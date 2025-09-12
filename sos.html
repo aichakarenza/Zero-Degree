@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero Degree - Eco Challenge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --pink-color: #E195AB;
+            --pink-dark: #DE3163;
+            --pink-light: #FFEDFA;
+            --green-color: #2E8B57;
+            --green-light: #CCDF92;
+            --text-color: #333;
+            --light-color: #f9f9f9;
+            --dark-color: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, var(--pink-light), white);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* HEADER DENGAN WARNA PINK SAJA */
+        header {
+            background-color: var(--pink-color);
+            color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .nav-links a:hover {
+            background-color: var(--pink-color);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1615753782342-6d13f8e8cc63?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 6rem 1rem;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--pink-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--pink-color);
+        }
+        
+        h2 {
+            color: var(--green-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--pink-light);
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 10px;
+            color: var(--pink-color);
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            background: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--pink-color);
+        }
+        
+        .challenge-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .challenge-card {
+            background: var(--light-color);
+            border-radius: 12px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-top: 4px solid var(--green-color);
+        }
+        
+        .challenge-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .challenge-card h3 {
+            color: var(--green-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .challenge-card h3 span {
+            margin-right: 12px;
+            font-size: 1.8rem;
+        }
+        
+        .challenge-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            padding: 0.8rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+        
+        .challenge-item:hover {
+            background: #f0f9f0;
+        }
+        
+        .challenge-item input[type="checkbox"] {
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--green-color);
+        }
+        
+        .challenge-item label {
+            cursor: pointer;
+            flex-grow: 1;
+            font-size: 1.05rem;
+        }
+        
+        .fact-display {
+            background: linear-gradient(to right, var(--pink-light), var(--green-light));
+            color: var(--text-color);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2.5rem;
+            display: none;
+            border-left: 5px solid var(--pink-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .fact-display.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .progress-container {
+            margin-top: 2.5rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--pink-color), var(--green-color));
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease-out;
+        }
+        
+        footer {
+            background: var(--pink-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-content p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .footer-content .brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .social-icons {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            color: var(--pink-light);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                display: none;
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .challenge-container {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-globe-americas"></i>
+                <span>Zero Degree</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#masalah"><i class="fas fa-tree"></i> Akar Masalah</a></li>
+                <li><a href="#dampak"><i class="fas fa-water"></i> Dampak</a></li>
+                <li><a href="#challenge"><i class="fas fa-tasks"></i> Eco-Challenge</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Mulai Perubahanmu Sekarang</h1>
+            
+            <a href="#challenge" class="cta-button">Mulai Challenge</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="masalah">
+            <h2><i class="fas fa-search"></i> Akar Masalah yang Sama</h2>
+            <p>Pemanasan global, yang ditandai dengan naiknya suhu Bumi hampir 1°C dalam seabad terakhir, dan mencairnya es di Arktik yang diprediksi akan bebas es pada musim panas 2027, bukanlah fenomena yang terisolasi. Keduanya berakar dari masalah yang sama: aktivitas manusia.</p>
+            
+            <div class="highlight">
+                <p>Pembakaran bahan bakar fosil untuk industri, transportasi, dan energi tidak hanya melepas polutan beracun yang mencemari udara kita, tetapi juga melepaskan gas rumah kaca dalam jumlah masif. Gas-gas inilah yang memerangkap panas di atmosfer, memanaskan planet kita, dan memicu berbagai krisis.</p>
+            </div>
+        </section>
+
+        <section id="dampak">
+            <h2><i class="fas fa-link"></i> Dampak yang Terkait dan Berantai</h2>
+            <p>Dampak dari krisis ini saling berkait dan memperparah satu sama lain. Mencairnya es Arktik bukan hanya soal hilangnya habitat beruang kutub. Es yang memantulkan sinar matahari digantikan oleh lautan gelap yang menyerap lebih banyak panas, yang pada gilirannya semakin mempercepat pemanasan global secara keseluruhan.</p>
+            
+            <div class="highlight">
+                <p>Pemanasan ini kemudian memicu cuaca yang lebih ekstrem, seperti gelombang panas, kekeringan, dan badai yang hebat. Selain itu, polusi udara dari sumber yang sama memperburuk masalah kesehatan masyarakat dan berkontribusi pada lingkaran setan krisis iklim.</p>
+            </div>
+        </section>
+
+        <section id="challenge">
+            <h2><i class="fas fa-seedling"></i> Eco-Challenge Harian</h2>
+            <p>Pilih tantangan di bawah ini dan centang ketika kamu telah menyelesaikannya. Fakta menarik akan muncul untuk menunjukkan dampak aksimu!</p>
+            
+            <div class="challenge-container">
+                <div class="challenge-card">
+                    <h3><span>🚗</span> Transportasi Ramah Iklim</h3>
+                    <div class="challenge-item">
+                        <input type="checkbox" id="transport1" data-fact="Naik transportasi umum 10 km/hari = Kurangi emisi setara 150 kg CO2/tahun">
+                        <label for="transport1">Naik transportasi umum hari ini</label>
+                    </div>
+                    <div class="challenge-item">
+                        <input type="checkbox" id="transport2" data-fact="Bersepeda atau jalan kaki untuk jarak dekat = Hindari emisi 0,5 kg CO2 per 5 km">
+                        <label for="transport2">Bersepeda atau jalan kaki</label>
+                    </div>
+                </div>
+                
+                <div class="challenge-card">
+                    <h3><span>🛒</span> Konsumsi Bijak & Kurangi Sampah</h3>
+                    <div class="challenge-item">
+                        <input type="checkbox" id="konsumsi1" data-fact="Bawa tas belanja sendiri = Kurangi sampah plastik hingga 175 lembar/tahun/orang">
+                        <label for="konsumsi1">Bawa tas belanja sendiri</label>
+                    </div>
+                    <div class="challenge-item">
+                        <input type="checkbox" id="konsumsi2" data-fact="Pilih produk tanpa kemasan berlebihan = Bantu kurangi 1.900 kg emisi CO2/tahun dari proses produksi kemasan">
+                        <label for="konsumsi2">Pilih produk tanpa kemasan berlebihan</label>
+                    </div>
+                </div>
+                
+                <div class="challenge-card">
+                    <h3><span>💡</span> Hemat Energi di Rumah</h3>
+                    <div class="challenge-item">
+                        <input type="checkbox" id="energi1" data-fact="Ganti 5 lampu ke LED = Kurangi emisi setara menanam 10 pohon/tahun">
+                        <label for="energi1">Ganti lampu ke LED</label>
+                    </div>
+                    <div class="challenge-item">
+                        <input type="checkbox" id="energi2" data-fact="Cabut charger yang tidak dipakai = Hemat listrik & cegah phantom energy yang buang-buang energi">
+                        <label for="energi2">Cabut charger tidak terpakai</label>
+                    </div>
+                </div>
+                
+                <div class="challenge-card">
+                    <h3><span>🍃</span> Pola Makan & Hidup Berkelanjutan</h3>
+                    <div class="challenge-item">
+                        <input type="checkbox" id="makan1" data-fact="Kurangi makanan terbuang = 30% emisi global dari produksi pangan! Hemat makanan = kurangi emisi metana dari TPA">
+                        <label for="makan1">Kurangi makanan terbuang</label>
+                    </div>
+                    <div class="challenge-item">
+                        <input type="checkbox" id="makan2" data-fact="Makan lebih banyak tanaman = Jejak karbon daging 10x lebih tinggi daripada biji-bijian & sayuran">
+                        <label for="makan2">Makan lebih banyak tanaman</label>
+                    </div>
+                </div>
+                
+                <div class="challenge-card">
+                    <h3><span>♻️</span> Pilah Sampah dengan Benar</h3>
+                    <div class="challenge-item">
+                        <input type="checkbox" id="sampah1" data-fact="Pilah sampah organik & anorganik = Bantu kurangi emisi metana dari TPA & dukung daur ulang efektif">
+                        <label for="sampah1">Pilah sampah organik & anorganik</label>
+                    </div>
+                    <div class="challenge-item">
+                        <input type="checkbox" id="sampah2" data-fact="1 botol plastik didaur ulang = Hemat energi untuk menyalakan lampu 3 jam">
+                        <label for="sampah2">Daur ulang botol plastik</label>
+                    </div>
+                </div>
+                
+                <div class="challenge-card">
+                    <h3><span>🧴</span> Gunakan Barang Ramah Lingkungan</h3>
+                    <div class="challenge-item">
+                        <input type="checkbox" id="barang1" data-fact="Bawa tumbler = Kurangi sampah cup sekali pakai & hemat 500 kg CO2/tahun">
+                        <label for="barang1">Bawa tumbler</label>
+                    </div>
+                    <div class="challenge-item">
+                        <input type="checkbox" id="barang2" data-fact="Pakai sedotan stainless/bambu = Selamatkan jutaan sedotan plastik yang berakhir di laut">
+                        <label for="barang2">Pakai sedotan stainless/bambu</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span>Progress Tantangan</span>
+                    <span id="progress-percentage">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+            </div>
+            
+            <div class="fact-display" id="factDisplay">
+                <h3>🌱 Fakta Cepat: Aksi Simpel, Dampak Besar!</h3>
+                <p id="factText"></p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+          
+            <p>"Dari Kita Untuk Bumi" - Zero Degree</p>
+    
+            
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const factDisplay = document.getElementById('factDisplay');
+            const factText = document.getElementById('factText');
+            const progressBar = document.getElementById('progress');
+            const progressPercentage = document.getElementById('progress-percentage');
+            
+            // Hitung total checklist
+            const totalCheckboxes = checkboxes.length;
+            let completedCheckboxes = 0;
+            
+            // Cek status dari local storage
+            checkboxes.forEach(checkbox => {
+                const isChecked = localStorage.getItem(checkbox.id) === 'true';
+                checkbox.checked = isChecked;
+                
+                if (isChecked) {
+                    completedCheckboxes++;
+                }
+                
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        completedCheckboxes++;
+                        // Tampilkan fakta
+                        factText.textContent = this.dataset.fact;
+                        factDisplay.classList.add('show');
+                        
+                        // Simpan status ke local storage
+                        localStorage.setItem(this.id, 'true');
+                    } else {
+                        completedCheckboxes--;
+                        factDisplay.classList.remove('show');
+                        localStorage.setItem(this.id, 'false');
+                    }
+                    
+                    // Update progress bar
+                    const progressValue = (completedCheckboxes / totalCheckboxes) * 100;
+                    progressBar.style.width = progressValue + '%';
+                    progressPercentage.textContent = Math.round(progressValue) + '%';
+                });
+            });
+            
+            // Inisialisasi progress bar
+            const progressValue = (completedCheckboxes / totalCheckboxes) * 100;
+            progressBar.style.width = progressValue + '%';
+            progressPercentage.textContent = Math.round(progressValue) + '%';
+        });
+    </script>
+</body>
+</html>
